@@ -117,7 +117,6 @@ describe("Tokenize Function", () => {
   });
 
   test("Malformed number", () => {
-    console.log(tokenize("10..2 + 3"));
     expect(() => tokenize("10..2 + 3")).toThrow("Unexpected character: .");
   });
 });

@@ -1,5 +1,11 @@
 import { Token, TOKEN_TYPE } from "./token";
 
+const WHITESPACE_REGEXR = /\s/;
+const NUMBER_REGEXR = /\d/;
+const NUMBER_OR_DOT_REGEXR = /\d|\./;
+const OPERATOR_REGEXR = /[+\-*/]/;
+const PARENTHESIS_REGEXR = /[()]/;
+
 export function tokenize(expression: string): Token[] {
   const tokens: Token[] = [];
 
@@ -8,17 +14,26 @@ export function tokenize(expression: string): Token[] {
     let char = expression[current];
 
     // Check for whitespace and skip it
-    if (/\s/.test(char)) {
+    if (WHITESPACE_REGEXR.test(char)) {
       current++;
       continue;
     }
 
     // Check for numbers
-    if (/\d/.test(char)) {
+    if (NUMBER_REGEXR.test(char)) {
       let number = "";
+      let hasDecimalPoint = false;
 
       // Handle decimal numbers
-      while (/\d|\./.test(char)) {
+      while (NUMBER_OR_DOT_REGEXR.test(char)) {
+        if (char === ".") {
+          if (hasDecimalPoint) {
+            throw new Error(`Unexpected character: ${char}`);
+          }
+
+          hasDecimalPoint = true;
+        }
+
         number += char;
         char = expression[++current];
       }
@@ -28,14 +43,14 @@ export function tokenize(expression: string): Token[] {
     }
 
     // Check for operators
-    if (/[+\-*/]/.test(char)) {
+    if (OPERATOR_REGEXR.test(char)) {
       tokens.push(new Token(TOKEN_TYPE.operator, char));
       current++;
       continue;
     }
 
     // Check for parentheses
-    if (/[()]/.test(char)) {
+    if (PARENTHESIS_REGEXR.test(char)) {
       tokens.push(new Token(TOKEN_TYPE.parenthesis, char));
       current++;
       continue;
