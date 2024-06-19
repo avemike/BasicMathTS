@@ -1,5 +1,1 @@
-function debugPrint() {
-  console.log("Hello world");
-}
-
-debugPrint();
+import { ValuesOf } from "./utils/types";
