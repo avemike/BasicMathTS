@@ -28,7 +28,9 @@ export function tokenize(expression: string): Token[] {
       while (NUMBER_OR_DOT_REGEXR.test(char)) {
         if (char === ".") {
           if (hasDecimalPoint) {
-            throw new Error(`Unexpected character: ${char}`);
+            throw new Error(
+              `Unexpected character: ${char} at position ${current}`
+            );
           }
 
           hasDecimalPoint = true;
@@ -56,7 +58,7 @@ export function tokenize(expression: string): Token[] {
       continue;
     }
 
-    throw new Error(`Unexpected character: ${char}`);
+    throw new Error(`Unexpected character: ${char} at position ${current}`);
   }
 
   return tokens;

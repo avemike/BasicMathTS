@@ -113,10 +113,14 @@ describe("Tokenize Function", () => {
   });
 
   test("Invalid character", () => {
-    expect(() => tokenize("3 + @")).toThrow("Unexpected character: @");
+    expect(() => tokenize("3 + @")).toThrow(
+      "Unexpected character: @ at position 4"
+    );
   });
 
   test("Malformed number", () => {
-    expect(() => tokenize("10..2 + 3")).toThrow("Unexpected character: .");
+    expect(() => tokenize("10..2 + 3")).toThrow(
+      "Unexpected character: . at position 3"
+    );
   });
 });
