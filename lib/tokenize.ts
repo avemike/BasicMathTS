@@ -1,3 +1,4 @@
+import { Operators } from "./operators";
 import { Token, TOKEN_TYPE } from "./token";
 
 const WHITESPACE_REGEXR = /\s/;
@@ -46,7 +47,7 @@ export function tokenize(expression: string): Token[] {
 
     // Check for operators
     if (OPERATOR_REGEXR.test(char)) {
-      tokens.push(new Token(TOKEN_TYPE.operator, char));
+      tokens.push(new Token(TOKEN_TYPE.operator, char as Operators));
       current++;
       continue;
     }
