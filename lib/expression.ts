@@ -1,4 +1,4 @@
-class ExpressionNode {
+export class ExpressionNode {
   value: string;
   left: ExpressionNode | null;
   right: ExpressionNode | null;
