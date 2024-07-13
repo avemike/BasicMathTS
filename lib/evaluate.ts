@@ -1,4 +1,4 @@
-import { ExpressionNode } from "./expression";
+import { ExpressionNode } from "./models/expression";
 
 export function evaluate(node: ExpressionNode): number {
   if (!node.left && !node.right) {

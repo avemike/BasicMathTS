@@ -1,7 +1,7 @@
-import { Token, TOKEN_TYPE } from "../lib/token";
+import { Token, TOKEN_TYPE } from "../lib/models/token";
 import { tokenize } from "../lib/tokenize";
 
-describe("Tokenize Function", () => {
+describe("Tokenize", () => {
   const assertTokensEqual = (actual: Token[], expected: Token[]) => {
     expect(actual.length).toBe(expected.length);
     for (let i = 0; i < actual.length; i++) {

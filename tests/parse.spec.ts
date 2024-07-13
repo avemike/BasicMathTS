@@ -1,10 +1,9 @@
-import { isOperator } from "../lib/operators";
-import { Token, TOKEN_TYPE } from "../lib/token";
+import { Token, TOKEN_TYPE } from "../lib/models/token";
 import { parse } from "../lib/parse";
-import { ExpressionNode } from "../lib/expression";
+import { ExpressionNode } from "../lib/models/expression";
 
-describe("parse", () => {
-  it("should correctly parse a simple expression with numbers and operators", () => {
+describe("Parse", () => {
+  it("Simple expression with numbers and operators", () => {
     const tokens = [
       new Token(TOKEN_TYPE.number, "3"),
       new Token(TOKEN_TYPE.operator, "+"),
@@ -22,7 +21,7 @@ describe("parse", () => {
     expect(result).toEqual(expectedTree);
   });
 
-  it("should correctly handle parentheses", () => {
+  it("Expression with parentheses", () => {
     const tokens = [
       new Token(TOKEN_TYPE.parenthesis, "("),
       new Token(TOKEN_TYPE.number, "3"),
@@ -44,7 +43,7 @@ describe("parse", () => {
     expect(result).toEqual(expectedTree);
   });
 
-  it("should throw an error for invalid operators", () => {
+  it("Invalid operators", () => {
     const tokens = [
       new Token(TOKEN_TYPE.number, "3"),
       new Token(TOKEN_TYPE.operator, "@" as any), // Invalid operator

@@ -1,6 +1,6 @@
 import { calculate } from "../lib/calculate";
 
-describe("Calculate Integration Tests", () => {
+describe("Calculate", () => {
   test("Simple addition", () => {
     const expression = "3 + 5";
     const result = calculate(expression);

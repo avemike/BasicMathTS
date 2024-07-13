@@ -1,5 +1,5 @@
-import { Operators } from "./operators";
-import { Token, TOKEN_TYPE } from "./token";
+import { Operators } from "./models/operators";
+import { Token, TOKEN_TYPE } from "./models/token";
 
 const WHITESPACE_REGEXR = /\s/;
 const NUMBER_REGEXR = /\d/;

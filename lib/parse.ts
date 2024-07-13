@@ -1,11 +1,16 @@
-import { ExpressionNode } from "./expression";
+import { ExpressionNode } from "./models/expression";
 import {
   isOperator,
   OPERATORS_ASSOCIATIVITY,
   OPERATORS_PRECEDENCE,
-} from "./operators";
-import { Token, TOKEN_TYPE } from "./token";
+} from "./models/operators";
+import { Token, TOKEN_TYPE } from "./models/token";
 
+/**
+ * Parses an infix expression into an expression tree.
+ * @param tokens The tokens representing the infix expression.
+ * @returns The root of the expression tree.
+ */
 export function parse(tokens: Token[]): ExpressionNode {
   const queue: (Token | ExpressionNode)[] = [];
   const operatorStack: Token<"operator">[] = [];
@@ -57,7 +62,12 @@ function processParenthesis(
 ) {
   if (token.value === "(") {
     operatorStack.push(token);
-  } else if (token.value === ")") {
+
+    return;
+  }
+
+  if (token.value === ")") {
+    // Pop operators until we find the matching opening parenthesis
     while (
       operatorStack.length > 0 &&
       operatorStack[operatorStack.length - 1].value !== "("
@@ -102,8 +112,10 @@ function shouldPopOperator(
 ): boolean {
   const topPrecedence = OPERATORS_PRECEDENCE[topOperator.value];
 
-  return (
-    (currentAssociativity === "left" && currentPrecedence <= topPrecedence) ||
-    (currentAssociativity === "right" && currentPrecedence < topPrecedence)
-  );
+  const isLeftLowerPrecedence =
+    currentAssociativity === "left" && currentPrecedence <= topPrecedence;
+  const isRightLowerPrecedence =
+    currentAssociativity === "right" && currentPrecedence < topPrecedence;
+
+  return isLeftLowerPrecedence || isRightLowerPrecedence;
 }

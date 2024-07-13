@@ -1,7 +1,7 @@
-import { ExpressionNode } from "../lib/expression";
+import { ExpressionNode } from "../lib/models/expression";
 import { evaluate } from "../lib/evaluate";
 
-describe("evaluate", () => {
+describe("Evaluate", () => {
   test("Simple addition", () => {
     const tree = new ExpressionNode(
       "+",

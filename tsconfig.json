@@ -7,7 +7,14 @@
 		"strict": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true
+		"forceConsistentCasingInFileNames": true,
+		"baseUrl": ".",
+		// "paths": {
+		// 	"@models/*": ["lib/models/*"],
+		// 	"@utils/*": ["lib/utils/*"],
+		// 	"@lib/*": ["lib/*"],
+		// }
 	},
 	"include": ["lib/**/*.ts"],
+
 }

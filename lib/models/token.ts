@@ -1,5 +1,5 @@
 import { Operators } from "./operators";
-import { ValuesOf } from "./utils/types";
+import { ValuesOf } from "../utils/types";
 
 export const TOKEN_TYPE = {
   number: "number",
