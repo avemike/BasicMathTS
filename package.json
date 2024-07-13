@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint",
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc"
   },
   "engines": {
     "node": ">=18"
