@@ -20,6 +20,8 @@ export function evaluate(node: ExpressionNode): number {
         throw new Error("Division by zero");
       }
       return leftValue / rightValue;
+    case "%":
+      return leftValue % rightValue;
     default:
       throw new Error(`Unknown operator: ${node.value}`);
   }

@@ -4,7 +4,8 @@ import { Token, TOKEN_TYPE } from "./models/token";
 const WHITESPACE_REGEXR = /\s/;
 const NUMBER_REGEXR = /\d/;
 const NUMBER_OR_DOT_REGEXR = /\d|\./;
-const OPERATOR_REGEXR = /[+\-*/]/;
+// @todo: create OPERATOR_REGEXR based on the OPERATORS const
+const OPERATOR_REGEXR = /[+\-*/%]/;
 const PARENTHESIS_REGEXR = /[()]/;
 
 export function tokenize(expression: string): Token[] {

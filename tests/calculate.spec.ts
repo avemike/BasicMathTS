@@ -5,7 +5,7 @@ describe("Calculate", () => {
     const expression = "3 + 5";
     const result = calculate(expression);
 
-    expect(result).toBe(8);
+    expect(result).toBe(eval(expression));
   });
 
   test("Complex expression", () => {
@@ -15,18 +15,25 @@ describe("Calculate", () => {
     expect(result).toBe(18);
   });
 
+  test("Complex expression with modulo", () => {
+    const expression = "3 + 5 * (10 - 4) / 2 % 3";
+    const result = calculate(expression);
+
+    expect(result).toBe(eval(expression));
+  });
+
   test("Expression with whitespace", () => {
     const expression = " 3 +   4 * 2 / ( 1 - 5 ) ";
     const result = calculate(expression);
 
-    expect(result).toBe(1);
+    expect(result).toBe(eval(expression));
   });
 
   test("Expression with decimals", () => {
     const expression = "3.5 + 2.5";
     const result = calculate(expression);
 
-    expect(result).toBe(6);
+    expect(result).toBe(eval(expression));
   });
 
   test("Division by zero", () => {

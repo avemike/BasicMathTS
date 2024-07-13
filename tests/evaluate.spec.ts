@@ -38,6 +38,15 @@ describe("Evaluate", () => {
     expect(evaluate(tree)).toBe(3);
   });
 
+  test("Simple modulo", () => {
+    const tree = new ExpressionNode(
+      "%",
+      new ExpressionNode("10"),
+      new ExpressionNode("3")
+    );
+    expect(evaluate(tree)).toBe(1);
+  });
+
   test("Complex expression", () => {
     const tree = new ExpressionNode(
       "+",
