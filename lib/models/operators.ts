@@ -3,13 +3,15 @@ export const SUBTRACT_OPERATOR = "-";
 export const MULTIPLY_OPERATOR = "*";
 export const DIVIDE_OPERATOR = "/";
 export const MODULO_OPERATOR = "%";
+export const POWER_OPERATOR = "^";
 
-const OPERATORS = [
+export const OPERATORS = [
   ADD_OPERATOR,
   SUBTRACT_OPERATOR,
   MULTIPLY_OPERATOR,
   DIVIDE_OPERATOR,
   MODULO_OPERATOR,
+  POWER_OPERATOR,
 ] as const;
 
 export type Operators = (typeof OPERATORS)[number];
@@ -20,6 +22,7 @@ export const OPERATORS_PRECEDENCE: Record<Operators, number> = {
   [MULTIPLY_OPERATOR]: 2,
   [DIVIDE_OPERATOR]: 2,
   [MODULO_OPERATOR]: 2,
+  [POWER_OPERATOR]: 3,
 };
 
 export const OPERATORS_ASSOCIATIVITY: Record<Operators, "left" | "right"> = {
@@ -28,6 +31,7 @@ export const OPERATORS_ASSOCIATIVITY: Record<Operators, "left" | "right"> = {
   [MULTIPLY_OPERATOR]: "left",
   [DIVIDE_OPERATOR]: "left",
   [MODULO_OPERATOR]: "left",
+  [POWER_OPERATOR]: "right",
 };
 
 export function isOperator(value: string): value is Operators {

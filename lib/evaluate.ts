@@ -22,6 +22,8 @@ export function evaluate(node: ExpressionNode): number {
       return leftValue / rightValue;
     case "%":
       return leftValue % rightValue;
+    case "^":
+      return Math.pow(leftValue, rightValue);
     default:
       throw new Error(`Unknown operator: ${node.value}`);
   }

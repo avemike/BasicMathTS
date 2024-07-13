@@ -47,6 +47,15 @@ describe("Evaluate", () => {
     expect(evaluate(tree)).toBe(1);
   });
 
+  test("Simple power", () => {
+    const tree = new ExpressionNode(
+      "^",
+      new ExpressionNode("2"),
+      new ExpressionNode("3")
+    );
+    expect(evaluate(tree)).toBe(8);
+  });
+
   test("Complex expression", () => {
     const tree = new ExpressionNode(
       "+",
@@ -67,6 +76,80 @@ describe("Evaluate", () => {
     );
 
     expect(evaluate(tree)).toBe(18);
+  });
+
+  test("Complex expression with modulo", () => {
+    const tree = new ExpressionNode(
+      "+",
+      new ExpressionNode("3"),
+      new ExpressionNode(
+        "%",
+        new ExpressionNode(
+          "/",
+          new ExpressionNode(
+            "*",
+            new ExpressionNode("5"),
+            new ExpressionNode(
+              "-",
+              new ExpressionNode("10"),
+              new ExpressionNode("4")
+            )
+          ),
+          new ExpressionNode("2")
+        ),
+        new ExpressionNode("3")
+      )
+    );
+
+    expect(evaluate(tree)).toBe(3);
+  });
+
+  test("Expression with whitespace", () => {
+    const tree = new ExpressionNode(
+      "+",
+      new ExpressionNode("3"),
+      new ExpressionNode(
+        "/",
+        new ExpressionNode(
+          "*",
+          new ExpressionNode("4"),
+          new ExpressionNode("2")
+        ),
+        new ExpressionNode(
+          "-",
+          new ExpressionNode("1"),
+          new ExpressionNode("5")
+        )
+      )
+    );
+
+    expect(evaluate(tree)).toBe(1);
+  });
+
+  test("Complex expression with power", () => {
+    const tree = new ExpressionNode(
+      "+",
+      new ExpressionNode("3"),
+      new ExpressionNode(
+        "^",
+        new ExpressionNode(
+          "/",
+          new ExpressionNode(
+            "*",
+            new ExpressionNode("5"),
+            new ExpressionNode(
+              "-",
+              new ExpressionNode("10"),
+              new ExpressionNode("4")
+            )
+          ),
+          new ExpressionNode("2")
+        ),
+        new ExpressionNode("2")
+      )
+    );
+
+    expect(evaluate(tree)).toBe(228);
   });
 
   test("Division by zero", () => {

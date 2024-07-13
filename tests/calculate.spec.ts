@@ -22,6 +22,13 @@ describe("Calculate", () => {
     expect(result).toBe(eval(expression));
   });
 
+  test("Complex expression with power", () => {
+    const expression = "3 + 5 * (10 - 4) / 2 ^ 2";
+    const result = calculate(expression);
+
+    expect(result).toBe(10.5);
+  });
+
   test("Expression with whitespace", () => {
     const expression = " 3 +   4 * 2 / ( 1 - 5 ) ";
     const result = calculate(expression);
